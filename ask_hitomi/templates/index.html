@@ -1,20 +1,15 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>AskHitomi</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="{% static "css/base.css" %}>
     <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/question.css">
-
 </head>
 <body>
-<<<<<<< HEAD
-
-{% include "include/navbar.html" %}
-=======
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between bg-dark navbar-dark ">
         <a id="main_label" class="navbar-brand" href="#">AskHitomi</a>
@@ -27,11 +22,11 @@
         </div>
 
         <div id="user-tools">
-            <img id="user-pic" src="../static/img/profile-pic.jpg" alt="Аватар"/>
+            <img id="user-pic" src="img/profile-pic.jpg" alt="Аватар"/>
             <div id="user-dropdown" class="dropdown">
                 <a class="dropdown-toggle" href="#" id="user-menu" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h4> cat Fill</h4>
+                   <h4> cat Fill</h4>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="user-menu">
                     <a class="dropdown-item" href="#">Profile</a>
@@ -41,18 +36,20 @@
             </div>
         </div>
     </nav>
-
 </header>
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
 
 <main>
     <div class="container">
         <div class="row">
-            <div class="col-9 pr-5 mt-5">
+            <div class="col-9 pr-5 mt-2">
+                <div class="headings">
+                    <h2>New Questions</h2>
+                    <h3><a href="#">Hot questions</a></h3>
+                </div>
                 <div class="question-card container bg-light shadow-sm">
                     <div class="row">
                         <div class="col-3 left-side">
-                            <img src="../static/img/hitomi.jpg">
+                            <img src="../static/img/hitomi.jpg" >
                             <div class="like-dislike">
                                 <button class="upvote-btn btn btn-primary btn-circle"><i class="fas fa-chevron-up"></i>
                                 </button>
@@ -65,60 +62,17 @@
                             <h2 class="question-title"><a href="question.html">Why do you store feed in SQL?</a></h2>
                             <p class="question-description">I think Postgres the best database!</p>
                             <div class="answers-and-tags">
-<<<<<<< HEAD
-                                <a href="{% url 'question_page' pk=question.id %}"
-                                   class="link-to-answers">Answers({{ question.num_of_answers }})</a>
-                                <p class="question-tags">Tags:
-                                    {% for t in question.tags %}
-                                        <a href="{% url 'tag_questions' tag=t %}">{{ t }}</a>
-                                    {% endfor %}
-=======
                                 <a href="question.html" class="link-to-answers">Answers(3)</a>
                                 <p class="question-tags">Tags: <a href="index_for_tag.html">mySQL</a> <a
                                         href="index_for_tag.html">POSTGRES</a></p>
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr>
-
-                <div class="answer-card container bg-light shadow-sm">
-                    <div class="row question other">
-
-                        <div class="col-2 left-side">
-                            <div class="other">
-                                <img src="../static/img/hitomi2.jpg" class="other">
-                            </div>
-                            <div class="like-dislike">
-                                <button class="upvote-btn btn btn-primary btn-circle"><i
-                                        class="fas fa-chevron-up"></i>
-                                </button>
-                                <i class="post-rating">0</i>
-                                <button class="downvote-btn btn btn-primary btn-circle"><i
-                                        class="fas fa-chevron-down"></i></button>
-                            </div>
-
-                        </div>
-
-                        <div class="col-10 right-side">
-                            <p class="question-description">A really good answer that helps solve the
-                                problem</p>
-                            <div class="form-check mark-correct">
-                                <input class="form-check-input" type="checkbox" id="correct-checkbox-2">
-                                <label class="form-check-label" for="correct-checkbox-2">
-                                    Correct!
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="answer-card container bg-light shadow-sm">
-                    <div class="row other question">
-                        <div class="col-2 left-side">
-                            <img src="../static/img/hitomi3.jpg" alt="Avatar">
+                <div class="question-card container bg-light shadow-sm">
+                    <div class="row">
+                        <div class="col-3 left-side">
+                            <img src="../static/img/hitomi2.jpg" >
                             <div class="like-dislike">
                                 <button class="upvote-btn btn btn-primary btn-circle"><i class="fas fa-chevron-up"></i>
                                 </button>
@@ -127,25 +81,41 @@
                                         class="fas fa-chevron-down"></i></button>
                             </div>
                         </div>
-                        <div class="col-10 right-side">
-                            <p class="question-description">A really good answer that helps solve the problem</p>
-                            <div class="form-check mark-correct">
-                                <input class="form-check-input" type="checkbox" id="correct-checkbox-3">
-                                <label class="form-check-label" for="correct-checkbox-3">
-                                    Correct!
-                                </label>
+                        <div class="col-9 right-side">
+                            <h2 class="question-title"><a href="question.html">C++ or C?</a></h2>
+                            <p class="question-description">Description of a question</p>
+                            <div class="answers-and-tags">
+                                <a href="question.html" class="link-to-answers">Answers(3)</a>
+                                 <p class="question-tags">Tags: <a href="index_for_tag.html">mySQL</a> <a
+                                        href="index_for_tag.html">POSTGRES</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr>
-                <form>
-                    <div class="enter-answer form-group">
-                        <textarea class="form-control" id="answer" placeholder="Enter yout answer here..."
-                                  required></textarea>
-                        <button class="btn btn-success" type="submit">Answer</button>
+
+                <div class="question-card container bg-light shadow-sm">
+                    <div class="row">
+                        <div class="col-3 left-side">
+                            <img src="../static/img/hitomi.jpg" >
+                            <div class="like-dislike">
+                                <button class="upvote-btn btn btn-primary btn-circle"><i class="fas fa-chevron-up"></i>
+                                </button>
+                                <i class="post-rating">0</i>
+                                <button class="downvote-btn btn btn-primary btn-circle"><i
+                                        class="fas fa-chevron-down"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-9 right-side">
+                            <h2 class="question-title"><a href="question.html">Is BMSTU good university?!</a></h2>
+                            <p class="question-description">Description of a question</p>
+                            <div class="answers-and-tags">
+                                <a href="question.html" class="link-to-answers">Answers(3)</a>
+                                 <p class="question-tags">Tags: <a href="index_for_tag.html">mySQL</a> <a
+                                        href="index_for_tag.html">POSTGRES</a></p>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
 
             <aside id="aside-info" class="col-3">
@@ -174,6 +144,24 @@
                 </div>
             </aside>
         </div>
+
+        <nav>
+            <ul class="pagination pagination-lg">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </main>
 
@@ -193,6 +181,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/d8773369b4.js" crossorigin="anonymous"></script>
+<script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"></script>
 <script src="../static/js/index.js"></script>
 
 </body>

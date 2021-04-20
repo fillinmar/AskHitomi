@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'include/base.html' %}
 
 {% load static %}
@@ -20,10 +21,47 @@
                        maxlength="100" placeholder="Input title" required>
                 <div class="invalid-feedback">
                     How to sleep less than 6 hours?
+=======
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AskHitomi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/ask.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between bg-dark navbar-dark ">
+        <a id="main_label" class="navbar-brand" href="#">AskHitomi</a>
+
+        <div class="input-form" id="search-box">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success button" type="submit">Ask</button>
+            </form>
+        </div>
+
+
+        <div id="user-tools">
+            <img id="user-pic" src="../static/img/profile-pic.jpg" alt="Аватар"/>
+            <div id="user-dropdown" class="dropdown">
+                <a class="dropdown-toggle" href="#" id="user-menu" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <h4> cat Fill</h4>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="user-menu">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="#">Exit</a>
+>>>>>>> 347554750ca15716885041992752eb5344f4d6de
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="form-group row p-3">
             <label for="input-content" class="col-sm-3 col-form-label"><h4>Text</h4></label>
             <div class="col-sm-9">
@@ -54,3 +92,105 @@
 {% block link-js %}
     <script src="{% static 'js/validation.js' %}"></script>
 {% endblock link-js %}
+=======
+
+    </nav>
+
+</header>
+
+<main>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-9 pr-5">
+                <h2>New question</h2>
+                <div class="container bg-light shadow-sm mb-3">
+                    <form action="question.html" id="create-form" class="needs-validation" novalidate>
+                        <div class="form-group row p-3">
+                            <label for="input-title" class="col-sm-3 col-form-label"><h4>Title</h4></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form" id="input-title"
+                                       maxlength="100" placeholder="Input title" required>
+                                <div class="invalid-feedback">
+                                    How to sleep less than 6 hours?
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3">
+                            <label for="input-content" class="col-sm-3 col-form-label"><h4>Text</h4></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control form" id="input-content"
+                                          placeholder="Input question text" required></textarea>
+                                <div class="invalid-feedback">
+                                    Really, how?
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-3">
+                            <label for="input-tags" class="col-sm-3 col-form-label"><h4>Tags</h4></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form" id="input-tags"
+                                       placeholder="Question tags" required>
+                                <div class="invalid-feedback">
+                                    Productivity
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="create-button" class="btn btn-success btn-lg m-3" type="submit">Ask!</button>
+                    </form>
+                </div>
+            </div>
+
+            <aside id="aside-info" class="col-3">
+                <h2>Popular tags</h2>
+                <div class="bg-light shadow-sm" id="tags-container">
+                    <ul class="tags-list">
+                        <li><a href="index_for_tag.html">Django</a></li>
+                        <li><a href="index_for_tag.html">numpy</a></li>
+                        <li><a href="index_for_tag.html">Flask</a></li>
+                        <li><a href="index_for_tag.html">MySQL</a></li>
+                        <li><a href="index_for_tag.html">Python</a></li>
+                        <li><a href="index_for_tag.html">Android</a></li>
+                        <li><a href="index_for_tag.html">POSTGRES</a></li>
+                        <li><a href="index_for_tag.html">iOS</a></li>
+                        <li><a href="index_for_tag.html">Linux</a></li>
+                    </ul>
+                </div>
+
+                <h2>Best Members</h2>
+                <div class="bg-light shadow-sm" id="best-users-container">
+                    <ul>
+                        <li><a href="#">cat_Fill</a></li>
+                        <li><a href="#">Hitomi</a></li>
+                        <li><a href="#">Queen_Meow</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer bg-light footer">
+    <div class="footer-copyright text-center">
+          <span class="text-muted">Author: Marina Novikova АПО-11</span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d8773369b4.js" crossorigin="anonymous"></script>
+<script src="../static/js/validation.js"></script>
+
+</body>
+</html>
+>>>>>>> 347554750ca15716885041992752eb5344f4d6de

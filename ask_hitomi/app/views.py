@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -76,3 +77,12 @@ def settings(request):
 
 def signup(request):
     return render(request, 'signup.html', {})
+=======
+from django.shortcuts import render
+
+
+def index(request):
+    return render(request, 'index.html', {})
+
+
+>>>>>>> 347554750ca15716885041992752eb5344f4d6de
