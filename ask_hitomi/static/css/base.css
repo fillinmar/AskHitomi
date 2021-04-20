@@ -2,21 +2,18 @@
 :root {
     --footer-height: 60px;
 }
-
-<<<<<<< HEAD
 #user-tools img {
     width: 80px;
     height: 80px;
     margin-right: 16px;
 }
 
-=======
 #user-tools img{
 width: 80px;
 height: 80px;
 margin-right: 16px;
 }
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
+
 .button {
     margin-left: 10px;
     width: 100px;
@@ -39,10 +36,6 @@ body {
     line-height: var(--footer-height); /* Vertically center the text there */
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
 #main_label div {
     display: flex;
     align-items: center;
@@ -66,12 +59,9 @@ body {
 }
 
 #aside-info {
-<<<<<<< HEAD
     margin-top: 30px;
     padding-left: 35px;
-=======
     margin-top: 50px;
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
 }
 
 #aside-info ul {
