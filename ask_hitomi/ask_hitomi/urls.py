@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 """ask_hitomi URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
+
 from django.contrib import admin
 from django.urls import path
 
@@ -23,7 +22,6 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('', views.new_questions, name='main_page'),
     path('hot/', views.hot_questions, name='hot_questions'),
     path('question/<int:pk>/', views.question_page, name='question_page'),
@@ -33,7 +31,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
     path('', views.new_questions, name='root'),
-=======
     path('', views.index),
->>>>>>> 347554750ca15716885041992752eb5344f4d6de
 ]
