@@ -1,0 +1,36 @@
+{% extends "include/base.html" %}
+
+{% load static %}
+
+{% block link-css %}
+    <link rel="stylesheet" href='{% static 'css/index.css' %}'/>
+    <link rel="stylesheet" href='{% static 'css/question.css' %}'/>
+{% endblock link-css %}
+
+{% block content %}
+    {% include 'include/question.html' %}
+
+    <div class="divider py-1 bg-light my-3"></div>
+
+    {% for answer in page_obj.object_list %}
+        {% include 'include/answer.html' %}
+    {% endfor %}
+    <hr>
+
+    <form>
+        <div class="enter-answer form-group">
+                        <textarea class="form-control" id="answer" placeholder="Enter yout answer here..."
+                                  required></textarea>
+            <button class="btn btn-success" type="submit">Answer</button>
+        </div>
+    </form>
+
+{% endblock content %}
+
+{% block pagination %}
+    {% include 'include/pagination.html' %}
+{% endblock pagination %}
+
+{% block link-js %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock link-js %}

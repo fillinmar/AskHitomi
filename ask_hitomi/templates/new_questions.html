@@ -1,0 +1,29 @@
+{% extends 'include/base.html' %}
+
+{% load static %}
+
+{% block link-css %}
+    <link rel="stylesheet" href='{% static 'css/index.css' %}'/>
+{% endblock link-css %}
+
+{% block main-headings %}
+    <div class="headings">
+        <h2>New Questions</h2>
+        <h3><a href="{% url 'hot_questions' %}">New questions</a></h3>
+    </div>
+{% endblock main-headings %}
+
+{% block content %}
+    {% for question in page_obj.object_list %}
+        {% include 'include/question.html' %}
+    {% endfor %}
+{% endblock content %}
+
+{% block pagination %}
+    {% include 'include/pagination.html' %}
+{% endblock pagination %}
+
+{% block link-js %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock link-js %}
+

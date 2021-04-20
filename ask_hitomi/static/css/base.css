@@ -1,0 +1,74 @@
+/* Sticky footer from Bootstrap documentation */
+:root {
+    --footer-height: 60px;
+}
+
+#user-tools img {
+    width: 80px;
+    height: 80px;
+    margin-right: 16px;
+}
+
+.button {
+    margin-left: 10px;
+    width: 100px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: var(--footer-height); /* Margin bottom by footer height */
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height); /* Set the fixed height of the footer here */
+    line-height: var(--footer-height); /* Vertically center the text there */
+}
+
+
+#main_label div {
+    display: flex;
+    align-items: center;
+}
+
+#site-title {
+    margin-right: 10px;
+}
+
+#search-box {
+    max-width: 50%;
+    width: 1000px
+}
+
+#user-dropdown {
+    display: inline-flex;
+}
+
+#ask-question, #user-pic, #user-menu {
+    margin-right: 16px;
+}
+
+#aside-info {
+    margin-top: 30px;
+    padding-left: 35px;
+}
+
+#aside-info ul {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.tags-list {
+    overflow: hidden;
+}
+
+.tags-list li {
+    float: left;
+    margin-right: 10px;
+}

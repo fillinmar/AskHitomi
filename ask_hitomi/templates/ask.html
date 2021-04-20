@@ -1,0 +1,56 @@
+{% extends 'include/base.html' %}
+
+{% load static %}
+
+{% block link-css %}
+    <link rel="stylesheet" href="{% static 'css/ask.css' %}">
+{% endblock link-css %}
+
+{% block main-headings %}
+    <h2>New question</h2>
+{% endblock main-headings %}
+
+{% block content %}
+<div class="container bg-light shadow-sm mb-3">
+    <form action="{% url 'question_page' pk=1 %}" id="create-form" class="needs-validation" novalidate>
+        <div class="form-group row p-3">
+            <label for="input-title" class="col-sm-3 col-form-label"><h4>Title</h4></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control form" id="input-title"
+                       maxlength="100" placeholder="Input title" required>
+                <div class="invalid-feedback">
+                    How to sleep less than 6 hours?
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row p-3">
+            <label for="input-content" class="col-sm-3 col-form-label"><h4>Text</h4></label>
+            <div class="col-sm-9">
+                                <textarea class="form-control form" id="input-content"
+                                          placeholder="Input question text" required></textarea>
+                <div class="invalid-feedback">
+                    Really, how?
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row p-3">
+            <label for="input-tags" class="col-sm-3 col-form-label"><h4>Tags</h4></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control form" id="input-tags"
+                       placeholder="Question tags" required>
+                <div class="invalid-feedback">
+                    Productivity
+                </div>
+            </div>
+        </div>
+
+        <button id="create-button" class="btn btn-success btn-lg m-3" type="submit">Ask!</button>
+    </form>
+</div>
+{% endblock content %}
+
+{% block link-js %}
+    <script src="{% static 'js/validation.js' %}"></script>
+{% endblock link-js %}
