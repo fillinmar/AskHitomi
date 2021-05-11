@@ -97,3 +97,11 @@ from random import choice, sample, randint
 from faker import Faker
 from datetime import datetime
 
+
+
+
+
+singup:
+
+
+

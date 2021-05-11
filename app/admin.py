@@ -1,8 +1,12 @@
 from django.contrib import admin
+from app import models
 
-from app.models import Article, Author
 
 # Register your models here.
-admin.site.register(Article)
+admin.site.register(models.Profile)
+admin.site.register(models.Tag)
+admin.site.register(models.Question)
+admin.site.register(models.Answer)
+admin.site.register(models.QuestionVote)
+admin.site.register(models.AnswerVote)
 
-admin.site.register(Author)

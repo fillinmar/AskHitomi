@@ -1,4 +1,3 @@
-
 {% extends 'include/base.html' %}
 
 {% load static %}
@@ -15,78 +14,88 @@
                 <div class="col-12">
                     <fieldset>
                         <h1>Registation</h1>
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5>Email </h5>
+                        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label for="{{ form.username.id_for_label }}" class="input-group-text"><span><i
+                                                class="fas fa-envelope"></i></span></label>
+                                    </div>
+                                    {{ form.username }}
+                                    <div class="invalid-feedback">
+                                        Input correct mail
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-8">
-                                <input id="user-email" placeholder="hitomi@mail.ru"
-                                       type="email" required>
-                                <div class="invalid-feedback">
-                                    Input correct email
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5>Login</h5>
-                            </div>
-                            <div class="col-8">
-                                <input id="login" placeholder="hitomi17" required><br>
-                                <div class="invalid-feedback">
-                                    Input login
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label for="{{ form.password.id_for_label }}" class="input-group-text"><span><i
+                                                class="fas fa-lock"></i></span></label>
+                                    </div>
+                                    {{ form.password }}
+                                    <div class="invalid-feedback">
+                                        Input this field
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5>NickName </h5>
-                            </div>
-                            <div class="col-8">
-                                <input id="nick" placeholder="hitomi"><br>
-                            </div>
-                        </div>
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5> Password</h5>
-                            </div>
-                            <div class="col-8">
-                                <input id="user-password" placeholder="******"
-                                       type="password" required> <br>
-                                <div class="invalid-feedback">
-                                    Input password
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5>Repeat password</h5>
-                            </div>
-                            <div class="col-8">
-                                <input id="user-repeat-password"
-                                       placeholder="******" type="password" required><br>
-                                <div class="invalid-feedback">
-                                    Input password
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label for="{{ form.confirm_password.id_for_label }}"
+                                               class="input-group-text"><span><i
+                                                class="fas fa-lock"></i></span></label>
+                                    </div>
+                                    {{ form.confirm_password }}
+                                    <div class="invalid-feedback">
+                                        Input this field
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row botton_off">
-                            <div class="col-3">
-                                <h5> Upload avatar</h5>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label for="{{ form.nickname.id_for_label }}" class="input-group-text"><span><i
+                                                class="fas fa-user"></i></span></label>
+                                    </div>
+                                    {{ form.nickname }}
+                                    <div class="invalid-feedback">
+                                        Input this field
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <input type="file" id="user-avatar" required><br>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label for="user-avatar" class="input-group-text"><span><i
+                                                class="fas fa-image"></i></span></label>
+                                    </div>
+                                    <div class="custom-file">
+                                        <label class="input-group-text custom-file-label"
+                                               for="{{ form.profile_pic.id_for_label }}">
+                                            Chose avatar </label>
+                                        {{ form.profile_pic }}
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Chose file
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                            {% include 'include/form_errors.html' %}
+
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Create account</button>
+                            </div>
+                            <p class="text-center"><a href="{% url 'login' %}" class="btn btn-link">Already have an account, log in</a>
+                            </p>
+                        </form>
                     </fieldset>
-                    <div class="form-group">
-                        <a class="btn btn-primary btn-block btn-success" href="{% url 'main_page' %}" type="submit">Create account</a>
-                    </div>
-                    <p class="text-center"><a href="{% url 'login' %}" class="btn btn-link">Already have an account</a>
-                    </p>
                 </div>
             </div>
         </form>

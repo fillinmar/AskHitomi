@@ -16,15 +16,18 @@
         {% include 'include/answer.html' %}
     {% endfor %}
     <hr>
-
-    <form>
-        <div class="enter-answer form-group">
-                        <textarea class="form-control" id="answer" placeholder="Enter yout answer here..."
-                                  required></textarea>
-            <button class="btn btn-success" type="submit">Answer</button>
-        </div>
-    </form>
-
+     {% if user.is_authenticated %}
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="enter-answer form-group">
+                {{ form.content }}
+                {% include 'include/form_errors.html' %}
+                <button class="btn btn-success" type="submit">Send answer</button>
+            </div>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}?continue={{ request.path }}" class="btn btn-success">Log in to answer</a>
+    {% endif %}
 {% endblock content %}
 
 {% block pagination %}

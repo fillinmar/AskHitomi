@@ -1,12 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django_resized import ResizedImageField
-from django.utils import timezone
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_name = models.CharField(max_length=30, verbose_name='Имя пользователя')
+    user_name = models.CharField(max_length=30, verbose_name='User name')
     profile_pic = ResizedImageField(size=[60, 60], upload_to='avatars', verbose_name='Аватар')
 
     def __str__(self):
@@ -18,7 +17,7 @@ class Profile(models.Model):
 
 
 class Tag(models.Model):
-    tag_name = models.CharField(max_length=30, unique=True, verbose_name='Название тега')
+    tag_name = models.CharField(max_length=30, unique=True, verbose_name='Tag`s name')
 
     def __str__(self):
         return self.tag_name
@@ -41,13 +40,12 @@ class QuestionManager(models.Manager):
 
 class Question(models.Model):
     author = models.ForeignKey('Profile', on_delete=models.CASCADE)
-    title = models.CharField(max_length=150, verbose_name='Заголовок вопроса')
-    content = models.TextField(verbose_name='Текст вопроса')
-    rating = models.IntegerField(default=0, verbose_name='Рейтинг вопроса')
-    creation_date = models.DateTimeField(verbose_name='Дата создания вопроса')
-    tags = models.ManyToManyField('Tag', verbose_name='Теги', related_name='questions', related_query_name='question')
-    # users who voted for the question
-    votes = models.ManyToManyField('Profile', blank=True, verbose_name="Оценки вопроса", through='QuestionVote',
+    title = models.CharField(max_length=150, verbose_name='Question title')
+    content = models.TextField(verbose_name='Question text')
+    rating = models.IntegerField(default=0, verbose_name='Question rating')
+    creation_date = models.DateTimeField(verbose_name='Question creation date')
+    tags = models.ManyToManyField('Tag', verbose_name='ags', related_name='questions', related_query_name='question')
+    votes = models.ManyToManyField('Profile', blank=True, verbose_name="Question ratings", through='QuestionVote',
                                    related_name="voted_questions", related_query_name="voted_questions")
 
     objects = QuestionManager()
@@ -76,12 +74,11 @@ class Answer(models.Model):
     author = models.ForeignKey('Profile', on_delete=models.CASCADE)
     related_question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name="answers",
                                          related_query_name="answer")
-    content = models.TextField(verbose_name='Текст ответа')
-    rating = models.IntegerField(default=0, verbose_name='Рейтинг ответа')
-    creation_date = models.DateTimeField(verbose_name='Дата создания ответа')
-    is_marked_correct = models.BooleanField(default=False, verbose_name='Отмечен ли как верный')
-    # users who voted for the answer
-    votes = models.ManyToManyField('Profile', blank=True, verbose_name="Оценки вопроса", through='AnswerVote',
+    content = models.TextField(verbose_name='Response text')
+    rating = models.IntegerField(default=0, verbose_name='Response rating')
+    creation_date = models.DateTimeField(verbose_name='Response creation date')
+    is_marked_correct = models.BooleanField(default=False, verbose_name='Is it marked as correct')
+    votes = models.ManyToManyField('Profile', blank=True, verbose_name="Question ratings", through='AnswerVote',
                                    related_name="voted_answer", related_query_name="voted_answer")
     objects = AnswerManager()
 
@@ -93,8 +90,8 @@ class Answer(models.Model):
         self.save()
 
     class Meta:
-        verbose_name = 'Ответ'
-        verbose_name_plural = 'Ответы'
+        verbose_name = 'Answer'
+        verbose_name_plural = 'Answers'
 
 
 class VoteManager(models.Manager):
@@ -112,37 +109,37 @@ class VoteManager(models.Manager):
 
 
 class QuestionVote(models.Model):
-    user = models.ForeignKey('Profile', on_delete=models.CASCADE, verbose_name='Кто оценил')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, verbose_name='Who rated it')
     mark = models.IntegerField(default=0,
-                               verbose_name='Поставленная оценка')
+                               verbose_name='Assigned rating')
 
     objects = VoteManager()
 
-    related_question = models.ForeignKey('Question', verbose_name='Оцениваемый вопрос', on_delete=models.CASCADE)
+    related_question = models.ForeignKey('Question', verbose_name='Evaluated question', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Оценка вопроса: {self.mark}'
+        return f'Question assessment: {self.mark}'
 
     class Meta:
-        verbose_name = 'Оценка вопроса'
-        verbose_name_plural = 'Оценки вопросов'
+        verbose_name = 'Question assessment'
+        verbose_name_plural = 'Questions assessment'
 
 
 class AnswerVote(models.Model):
-    user = models.ForeignKey('Profile', on_delete=models.CASCADE, verbose_name='Кто оценил')
+    user = models.ForeignKey('Profile', on_delete=models.CASCADE, verbose_name='Who rated it')
     mark = models.IntegerField(default=0,
-                               verbose_name='Поставленная оценка')
+                               verbose_name='Assigned rating')
 
     objects = VoteManager()
 
-    related_answer = models.ForeignKey('Answer', verbose_name='Оцениваемый ответ', on_delete=models.CASCADE)
+    related_answer = models.ForeignKey('Answer', verbose_name='Rated response', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Оценка ответа: {self.mark}'
+        return f'Response rating: {self.mark}'
 
     class Meta:
-        verbose_name = 'Оценка ответа'
-        verbose_name_plural = 'Оценки ответов'
+        verbose_name = 'Response of answer'
+        verbose_name_plural = 'Responses of answers'
 
 
 class Author(models.Model):
@@ -162,17 +159,5 @@ class ArticleManager(models.Manager):
         return self.filter(author_id=1)
 
 
-class Article(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField()
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
-
-    objects = ArticleManager()
-
-    def __str__(self):
-        return self.title
-
-    verbose_name = 'Article'
-    verbose_name_plural = 'Articles'
 
 

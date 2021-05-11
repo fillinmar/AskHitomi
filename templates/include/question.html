@@ -3,7 +3,7 @@
 <div class="question-card container bg-light shadow-sm">
     <div class="row">
         <div class="col-3 left-side">
-            <img src={% static "img/hitomi.jpg" %}>
+            <img src="{{ question.author.profile_pic.url }}">
             <p class="user-nickname">{{ question.author.user_name }}</p>
             <div class="like-dislike">
                 <button class="upvote-btn btn btn-primary btn-circle"><i class="fas fa-chevron-up"></i>

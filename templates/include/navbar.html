@@ -1,27 +1,30 @@
 {% load static %}
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between bg-dark navbar-dark ">
+    <nav class="navbar navbar-expand-lg d-flex justify-content-between bg-dark navbar-dark ">
         <a id="main_label" class="navbar-brand" href='{% url 'root' %}'> AskHitomi</a>
         <div class="input-form" id="search-box">
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <a class="btn btn-outline-success button" href= "{% url 'ask' %}" type="submit">Ask</a>
+                <a class="btn btn-outline-success button" href="{% url 'ask_question' %}" id="ask-question"  type="submit">Ask</a>
             </form>
         </div>
-
-        <div id="user-tools">
-            <img id="user-pic" src="{% static "img/profile-pic.jpg" %}" alt="Аватар"/>
+        {% if user.is_authenticated %}
+            <div id="user-tools"  style = "margin-right: 100px;" >
+            <img id="user-pic" src='{{ user.profile.profile_pic.url }}' alt="Аватар"/>
             <div id="user-dropdown" class="dropdown">
                 <a class="dropdown-toggle" href="#" id="user-menu" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <h4> cat Fill</h4>
+                    <h4>{{ user.profile.nickname }}</h4>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="user-menu">
-                    <a class="dropdown-item" href="#">Profile</a>
                     <a class="dropdown-item" href="{% url 'settings' %}">Settings</a>
-                    <a class="dropdown-item" href="#">Exit</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
+        {% else %}
+                <a class="pr-2" href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'signup' %}">Registration</a>
+        {% endif %}
         </div>
     </nav>
 </header>

@@ -10,15 +10,21 @@ from datetime import datetime
 fake = Faker(["ru_RU"])
 
 
+def generate_users():
+    for i in range(100):
+        User.objects.create_user(fake.unique.first_name()+"Ii1", fake.email(),
+                                 fake.password(length=fake.random_int(min=8, max=15)))
+
+
 class Command(BaseCommand):
-    help = 'Генерация базы данных'
+    help = 'Generate database'
 
     def add_arguments(self, parser):
-        parser.add_argument("--profiles", type=int, help="Количество профилей")
-        parser.add_argument("--questions", type=int, help="Количество вопросов")
-        parser.add_argument("--answers", type=int, help="Количество ответов к вопросу")
-        parser.add_argument("--tags", type=int, help="Количество тегов")
-        parser.add_argument("--votes", type=int, help="Количество оценок к вопросу")
+        parser.add_argument("--profiles", type=int, help="Numbers of profile")
+        parser.add_argument("--questions", type=int, help="Numbers of questions")
+        parser.add_argument("--answers", type=int, help="Numbers of question`s answers")
+        parser.add_argument("--tags", type=int, help="Numbers of tags")
+        parser.add_argument("--votes", type=int, help="Numbers of questions`s votes")
 
     def handle(self, *args, **kwargs):
         try:
@@ -26,7 +32,6 @@ class Command(BaseCommand):
             questions_count = kwargs["questions"]
             answers_per_question_count = kwargs["answers"]
             tags_count = kwargs["tags"]
-            votes_per_question_number = kwargs["votes"]
         except:
             raise CommandError("Some arguments were not provided")
 
@@ -35,28 +40,22 @@ class Command(BaseCommand):
         self.generate_questions(questions_count)
         self.generate_answers(answers_per_question_count)
 
-    def generate_users(self, count):
-        for i in range(10):
-            User.objects.create_user(fake.unique.first_name()+"i", fake.email(),
-                                     fake.password(length=fake.random_int(min=8, max=15)))
-
-    def generate_profiles(self, count):
-        self.generate_users(10)
+    def generate_profiles(self):
+        generate_users(100)
         users_ids = list(User.objects.values_list("id", flat=True))
         profile_pics = ["img/profile-pic.jpeg", "img/hitomi3.jpeg"]
 
-        for i in range(10):
-            Profile.objects.create(user_id=users_ids[i], user_name=fake.last_name()+"i",
+        for i in range(100):
+            Profile.objects.create(user_id=users_ids[i], user_name=fake.last_name()+i,
                                    profile_pic=choice(profile_pics))
 
-    def generate_tags(self, count):
-        for i in range(10):
+    def generate_tags(self):
+        for i in range(100):
             Tag.objects.create(tag_name=fake.word())
 
     def generate_questions(self, count):
         profiles = list(Profile.objects.values_list("id", flat=True))
-
-        for i in range(10):
+        for i in range(100):
             question = Question.objects.create(
                 author_id=choice(profiles),
                 title=fake.sentence(nb_words=3),
@@ -65,7 +64,6 @@ class Command(BaseCommand):
                                                                 timezone.get_current_timezone()),
                                                      timezone.now())
             )
-
             tags_count = Tag.objects.count()
             tags = list(set([Tag.objects.get(id=randint(1, tags_count)) for _ in range(randint(1, tags_count))]))
             question.tags.set(tags)
@@ -74,12 +72,11 @@ class Command(BaseCommand):
                                through_defaults={"mark": VoteManager.LIKE})
             question.update_rating()
 
-
-    def generate_answers(self, count):
+    def generate_answers(self):
         profiles = list(Profile.objects.values_list("id", flat=True))
         questions = list(Question.objects.values_list("id", flat=True))
         for question_id in questions:
-            for i in range(10):
+            for i in range(100):
                 answer = Answer.objects.create(
                     author_id=choice(profiles),
                     related_question_id=question_id,
